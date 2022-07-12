@@ -1,22 +1,5 @@
-import React from "react";
-
-const labelCompData = [
-  {
-    type: "Breakfast",
-    color: "green",
-    percent: 30,
-  },
-  {
-    type: "Lunch",
-    color: "yellow",
-    percent: 45,
-  },
-  {
-    type: "Dinner",
-    color: "red",
-    percent: 25,
-  },
-];
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/GlobalState";
 
 const LabelComponent = ({ data }) => {
   if (!data) return <></>;
@@ -35,6 +18,54 @@ const LabelComponent = ({ data }) => {
 };
 
 const Label = () => {
+  const { mealData } = useContext(GlobalContext);
+  let breakfastCalories = 0;
+  let lunchCalories = 0;
+  let dinnerCalories = 0;
+  let totalCalories = 0;
+  const calculateCalories = (meals) => {
+    for (let meal of meals) {
+      switch (meal.mealType) {
+        case "Breakfast":
+          breakfastCalories += meal.calories;
+          break;
+        case "Lunch":
+          lunchCalories += meal.calories;
+          break;
+        case "Dinner":
+          dinnerCalories += meal.calories;
+          break;
+      }
+    }
+  };
+  calculateCalories(mealData);
+  totalCalories = breakfastCalories + lunchCalories + dinnerCalories;
+  const labelCompData = [
+    {
+      type: "Breakfast",
+      color: "rgb(255, 99, 132)",
+      percent:
+        totalCalories === 0
+          ? 0
+          : Math.round((100 * breakfastCalories) / totalCalories),
+    },
+    {
+      type: "Lunch",
+      color: "rgb(54, 162, 235)",
+      percent:
+        totalCalories === 0
+          ? 0
+          : Math.round((100 * lunchCalories) / totalCalories),
+    },
+    {
+      type: "Dinner",
+      color: "rgb(255, 205, 86)",
+      percent:
+        totalCalories === 0
+          ? 0
+          : Math.round((100 * dinnerCalories) / totalCalories),
+    },
+  ];
   return (
     <>
       {labelCompData.map((data, ind) => (

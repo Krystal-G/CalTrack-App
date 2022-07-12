@@ -34,7 +34,6 @@ export const GlobalProvider = ({ children }) => {
       payload: id,
     });
   }
-
   return (
     <GlobalContext.Provider
       value={{

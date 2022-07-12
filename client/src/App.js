@@ -10,8 +10,8 @@ function App() {
           <h1 className="text-4xl py-8 mb-10 rounded bg-ltgreen">CalTrack</h1>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <RightContainer />
             <LeftContainer />
+            <RightContainer />
           </div>
         </div>
       </div>

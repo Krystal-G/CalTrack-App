@@ -1,16 +1,12 @@
 import React from "react";
-import Graph from "./Graph";
-import Label from "./Label";
+import Form from "./Form";
+import MealList from "./MealList";
 
 const RightContainer = () => {
   return (
-    <div className="flex justify-content max-w-xs mx-auto">
-      <div className="item">
-        <Graph></Graph>
-        <div className="flex flex-col py-10 gap-4">
-          <Label></Label>
-        </div>
-      </div>
+    <div className="form max-w-sm mx-auto w-96">
+      <Form />
+      <MealList />
     </div>
   );
 };
