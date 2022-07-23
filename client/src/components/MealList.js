@@ -11,7 +11,7 @@ const Meal = ({ meal }) => {
       style={{ borderLeft: `8px solid ${meal.color}` }}
     >
       <span className="block w-full">{meal.name}</span>
-      <span className="block w-full font-bold">{meal.calories} KCal</span>
+      <span className="block w-full font-bold">{meal.calories} Cal</span>
       <button
         onClick={() => {
           deleteMeal(meal._id);
@@ -25,9 +25,11 @@ const Meal = ({ meal }) => {
 };
 
 const MealList = () => {
-  const { mealData, getMeal } = useContext(GlobalContext);
+  const { mealData, getMeal, userName } = useContext(GlobalContext);
   useEffect(() => {
-    getMeal();
+    if (userName !== "") {
+      getMeal(userName);
+    }
   }, [mealData]);
   return (
     <div className="flex flex-col py-6 gap-3">

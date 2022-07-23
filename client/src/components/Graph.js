@@ -20,7 +20,7 @@ const Graph = () => {
         case "Lunch":
           lunchCalories += meal.calories;
           break;
-        case "Dinner":
+        default:
           dinnerCalories += meal.calories;
           break;
       }
@@ -55,7 +55,7 @@ const Graph = () => {
         <Doughnut {...graphConfig}></Doughnut>
         <h3 className="total mt-4 font-bold">
           Total
-          <span className="block mt-3 text-3xl">{totalCalories} KCal</span>
+          <span className="block mt-3 text-3xl">{totalCalories} Cal</span>
         </h3>
       </div>
     </>

@@ -15,6 +15,11 @@ export default (state, actions) => {
         ...state,
         mealData: state.mealData.filter((meal) => meal._id !== actions.payload),
       };
+    case "SET_USER":
+      return {
+        ...state,
+        userName: actions.payload,
+      };
     default:
       return state;
   }

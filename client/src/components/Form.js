@@ -5,7 +5,7 @@ const Form = () => {
   const [name, setName] = useState("");
   const [mealType, setMealType] = useState("Breakfast");
   const [calories, setCalories] = useState("");
-  const { addMeal } = useContext(GlobalContext);
+  const { userName, addMeal } = useContext(GlobalContext);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -13,11 +13,11 @@ const Form = () => {
       name: name,
       calories: +calories,
       mealType: mealType,
+      byUser: userName,
     };
     if (!newMeal.name) {
       alert("Please enter the meal!!!!");
-    }
-    if (newMeal.calories <= 0) {
+    } else if (newMeal.calories <= 0) {
       alert("Please enter valid calore amount for the meal!!!!");
     }
     addMeal(newMeal);
@@ -67,11 +67,17 @@ const Form = () => {
               className="form-input"
             ></input>
           </div>
-          <div className="submit-btn">
-            <button type="submit" className="border py-2 w-full">
-              Track Meal
-            </button>
-          </div>
+          {userName !== "" ? (
+            <div className="submit-btn">
+              <button type="submit" className="border py-2 w-full">
+                Track Meal
+              </button>
+            </div>
+          ) : (
+            <p className="py-2 txt-gray bg-red-400">
+              Login to start tracking meals !
+            </p>
+          )}
         </div>
       </form>
     </>

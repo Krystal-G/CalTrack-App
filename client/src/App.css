@@ -17,7 +17,7 @@
   padding: 0;
 }
 
-.App {
+.tracker-container {
   background-color: var(--color-gray);
   text-align: center;
   padding: 4em 0;
@@ -26,13 +26,22 @@
 .bg-dkgreen {
   background-color: var(--color-dkgreen);
 }
+.txt-dkgreen {
+  color: var(--color-dkgreen);
+}
 
 .bg-ltgreen {
   background-color: var(--color-ltgreen);
 }
+.txt-ltgreen {
+  color: var(--color-ltgreen);
+}
 
 .bg-gray {
   background-color: var(--color-gray);
+}
+.txt-gray {
+  color: var(--color-gray);
 }
 
 .form-input {
@@ -44,3 +53,7 @@
   color: var(--color-ltgreen);
 }
 
+.login-container {
+  background-image: -webkit-linear-gradient(135deg, #003e29,#ade6b9);
+ 
+}

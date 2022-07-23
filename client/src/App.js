@@ -1,20 +1,22 @@
 import "./App.css";
-import LeftContainer from "./components/LeftContainer";
-import RightContainer from "./components/RightContainer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Tracker from "./pages/Tracker";
+import Login from "./pages/Login";
+import Error from "./pages/Error";
+import SharedLayout from "./components/SharedLayout";
 import { GlobalProvider } from "./context/GlobalState";
 function App() {
   return (
     <GlobalProvider>
-      <div className="App">
-        <div className="container mx-auto max-w-6xl text-center">
-          <h1 className="text-4xl py-8 mb-10 rounded bg-ltgreen">CalTrack</h1>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <LeftContainer />
-            <RightContainer />
-          </div>
-        </div>
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Tracker />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="*" element={<Error />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </GlobalProvider>
   );
 }

@@ -1,8 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import axios from "axios";
 import AppReducer from "./AppReducer";
+
 const initialState = {
   mealData: [],
+  userName: "",
 };
 const url = "http://localhost:8080";
 
@@ -11,8 +13,8 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
-  async function getMeal() {
-    const res = await axios.get(`${url}/api/meal`);
+  async function getMeal(byUser) {
+    const res = await axios.get(`${url}/api/meal/${byUser}`);
     dispatch({
       type: "GET_MEAL",
       payload: res.data,
@@ -34,13 +36,22 @@ export const GlobalProvider = ({ children }) => {
       payload: id,
     });
   }
+
+  function User(username) {
+    dispatch({
+      type: "SET_USER",
+      payload: username,
+    });
+  }
   return (
     <GlobalContext.Provider
       value={{
         mealData: state.mealData,
+        userName: state.userName,
         getMeal,
         deleteMeal,
         addMeal,
+        User,
       }}
     >
       {children}

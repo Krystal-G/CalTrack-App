@@ -32,7 +32,7 @@ const Label = () => {
         case "Lunch":
           lunchCalories += meal.calories;
           break;
-        case "Dinner":
+        default:
           dinnerCalories += meal.calories;
           break;
       }

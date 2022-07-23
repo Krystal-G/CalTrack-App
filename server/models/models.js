@@ -12,6 +12,10 @@ const Meal_Schema = new Schema({
   calories: {
     type: Number,
   },
+  byUser: {
+    type: String,
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now,
@@ -20,7 +24,30 @@ const Meal_Schema = new Schema({
 
 const Meal = mongoose.model("Meal", Meal_Schema);
 
+// User
+const User_Schema = new Schema({
+  username: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now(),
+  },
+});
+
+const User = mongoose.model("User", User_Schema);
+
 exports.default = Meal;
 module.exports = {
   Meal,
+  User,
 };
